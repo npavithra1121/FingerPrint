@@ -3,9 +3,6 @@ package com.example.fingerprint.utils
 import android.content.Context
 import android.content.DialogInterface
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import com.example.fingerprint.R
 import com.example.fingerprint.databinding.BottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -40,8 +37,6 @@ class FingerprintDialog  : BottomSheetDialog, View.OnClickListener {
 
     private fun setDialogView() {
         binding = BottomSheetBinding.inflate(layoutInflater)
-
-       // val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet, null)
         setContentView(binding.root)
         binding.btnCancel.setOnClickListener(this)
         updateLogo()
@@ -60,17 +55,17 @@ class FingerprintDialog  : BottomSheetDialog, View.OnClickListener {
     }
 
     fun setDescription(description: String?) {
-        itemDescription!!.text = description
+        binding.itemDescription.text = description
     }
 
     fun setButtonText(negativeButtonText: String?) {
-        btnCancel!!.text = negativeButtonText
+        binding.btnCancel.text = negativeButtonText
     }
 
     private fun updateLogo() {
         try {
-            val drawable = getContext().packageManager.getApplicationIcon(context!!.packageName)
-            imgLogo!!.setImageDrawable(drawable)
+            val drawable = getContext().packageManager.getApplicationIcon(getContext().packageName)
+            binding.imgLogo.setImageDrawable(drawable)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -78,6 +73,6 @@ class FingerprintDialog  : BottomSheetDialog, View.OnClickListener {
 
     override fun onClick(view: View) {
         dismiss()
-        fingerprintCallback!!.onAuthenticationCancelled()
+        fingerprintCallback?.onAuthenticationCancelled()
     }
 }
