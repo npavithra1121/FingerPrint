@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Fingerprint</string>
+    <string name="welcome_screen">Welcome Screen</string>
+    <string name="failed_count">Total number of failed attempts : %1$d</string>
 </resources>
